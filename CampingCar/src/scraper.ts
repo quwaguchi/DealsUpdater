@@ -97,73 +97,45 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
   const page = await context.newPage();
   
   try {
-    await page.goto(FRASERWAY_URL, { waitUntil: 'networkidle', timeout: 60000 });
+    await page.goto(FRASERWAY_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
     
-    await page.waitForSelector('table, .rental-special', { timeout: 30000 })
+    await page.waitForSelector('table.table-striped tbody tr, table, .rental-special', { timeout: 30000 })
       .catch(() => console.log('[Scraper] Fraserway: Selector timeout'));
     
     const offers = await page.evaluate(() => {
       const results: any[] = [];
       
-      const tables = Array.from(document.querySelectorAll('table'));
-      const relocationTable = tables.find(t => 
-        t.textContent?.includes('Route') || t.textContent?.includes('RV Type')
-      );
-      
-      if (relocationTable) {
-        const rows = Array.from(relocationTable.querySelectorAll('tbody tr'));
-        rows.forEach((row) => {
-          const tds = Array.from(row.querySelectorAll('td'));
-          if (tds.length >= 4) {
-            // Based on observed GHA logs, it seems the order might be different or shifted
-            // Let's try to be smarter or at least fix the observed shift
-            let route = '';
-            let vehicleInfo = '';
-            let datesStr = '';
-            let price = '';
-
-            // Check if first column looks like a route (contains " to ")
-            const col0 = tds[0]?.textContent?.trim() || '';
-            const col1 = tds[1]?.textContent?.trim() || '';
-            
-            if (col0.toLowerCase().includes(' to ')) {
-              // Standard layout
-              route = col0;
-              vehicleInfo = col1;
-              datesStr = tds[3]?.textContent?.trim() || '';
-              price = tds[4]?.textContent?.trim() || '';
-            } else {
-              // Shifted layout or different order (as seen in logs where col0 was vehicle)
-              vehicleInfo = col0;
-              route = col1; // Assume next is route
-              // If col1 doesn't have "to", maybe it's missing
-              datesStr = tds[2]?.textContent?.trim() || '';
-              price = tds[3]?.textContent?.trim() || '';
-            }
-            
-            // Parse route
-            const routeParts = route.split(/\s+to\s+/i);
-            const departure = routeParts[0] || route;
-            const destination = routeParts[1] || '';
-            
-            // Parse dates
-            let startDate = datesStr;
-            let endDate = '';
-            if (datesStr.includes('/')) {
-              const dateParts = datesStr.split('/');
-              startDate = dateParts[0].trim();
-              endDate = dateParts[1].trim();
-            } else if (datesStr.toLowerCase().startsWith('until')) {
-              startDate = 'Now';
-              endDate = datesStr.replace(/until/i, '').trim();
-            }
-            
-            if (departure && (destination || startDate)) {
-              results.push({ departure, destination, startDate, endDate, price, vehicleInfo });
-            }
+      const rows = document.querySelectorAll('table.table-striped tbody tr');
+      rows.forEach((row) => {
+        const tds = Array.from(row.querySelectorAll('td'));
+        if (tds.length >= 5) {
+          const route = tds[0]?.textContent?.trim() || '';
+          const vehicleInfo = tds[1]?.textContent?.trim() || '';
+          const datesStr = tds[3]?.textContent?.trim() || '';
+          const price = tds[4]?.textContent?.trim() || '';
+          
+          // Parse route (e.g., "Calgary to Whitehorse")
+          const routeParts = route.split(/\s+to\s+/i);
+          const departure = routeParts[0] || route;
+          const destination = routeParts[1] || '';
+          
+          // Parse dates
+          let startDate = datesStr;
+          let endDate = '';
+          if (datesStr.includes('/')) {
+            const dateParts = datesStr.split('/');
+            startDate = dateParts[0].trim();
+            endDate = dateParts[1].trim();
+          } else if (datesStr.toLowerCase().startsWith('until')) {
+            startDate = 'Now';
+            endDate = datesStr.replace(/until/i, '').trim();
           }
-        });
-      }
+          
+          if (departure && (destination || startDate)) {
+            results.push({ departure, destination, startDate, endDate, price, vehicleInfo });
+          }
+        }
+      });
       
       if (results.length === 0) {
         const offerElements = document.querySelectorAll('[data-qa="relocation-special"], .relocation-card, .offer-card, .rental-special');
