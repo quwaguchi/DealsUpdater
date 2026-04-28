@@ -108,7 +108,8 @@ function formatEmailBody(offers: RelocationOffer[]): string {
           <div class="offer-detail">
             <div><span class="offer-detail-label">期間:</span> ${escapeHtml(offer.startDate)} 〜 ${escapeHtml(offer.endDate)}</div>
             <div><span class="offer-detail-label">料金:</span> ${escapeHtml(offer.price)}</div>
-            <div><span class="offer-detail-label">車両:</span> ${escapeHtml(offer.vehicleInfo)}</div>
+            <div><span class="offer-detail-label">車両:</span> ${escapeHtml(offer.vehicleInfo)}${offer.kms ? ` (${escapeHtml(offer.kms)})` : ''}</div>
+            ${offer.extras ? `<div><span class="offer-detail-label">備考:</span> ${escapeHtml(offer.extras)}</div>` : ''}
           </div>
         </div>
 `;

@@ -31,7 +31,7 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
       if (relocationTable) {
         const rows = Array.from(relocationTable.querySelectorAll('tbody tr'));
         rows.forEach((row) => {
-          const tds = Array.from(row.querySelectorAll('td'));
+          const tds = Array.from(row.querySelectorAll('td, th'));
           if (tds.length >= 6) {
             const departure = tds[0]?.textContent?.trim() || '';
             const destination = tds[1]?.textContent?.trim() || '';
@@ -39,9 +39,11 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
             const endDate = tds[3]?.textContent?.trim() || '';
             const vehicleInfo = tds[4]?.textContent?.trim() || '';
             const price = tds[5]?.textContent?.trim() || '';
+            const kms = tds[6]?.textContent?.trim() || '';
+            const extras = tds[7]?.textContent?.trim() || '';
             
             if (departure && destination) {
-              results.push({ departure, destination, startDate, endDate, vehicleInfo, price });
+              results.push({ departure, destination, startDate, endDate, vehicleInfo, price, kms, extras });
             }
           }
         });
@@ -79,6 +81,8 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
       url: CANADREAM_URL,
       scrapedAt: now,
       source: 'canadream',
+      kms: offer.kms,
+      extras: offer.extras,
     }));
     
     console.log(`[Scraper] Found ${mappedOffers.length} offers from canadream.com`);
@@ -107,17 +111,22 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
       
       const rows = document.querySelectorAll('table.table-striped tbody tr');
       rows.forEach((row) => {
-        const tds = Array.from(row.querySelectorAll('td'));
+        const tds = Array.from(row.querySelectorAll('td, th'));
         if (tds.length >= 5) {
           const route = tds[0]?.textContent?.trim() || '';
           const vehicleInfo = tds[1]?.textContent?.trim() || '';
+          const duration = tds[2]?.textContent?.trim() || '';
           const datesStr = tds[3]?.textContent?.trim() || '';
-          const price = tds[4]?.textContent?.trim() || '';
+          const rawPrice = tds[4]?.textContent?.trim() || '';
+          const kms = tds[5]?.textContent?.trim() || '';
           
           // Parse route (e.g., "Calgary to Whitehorse")
           const routeParts = route.split(/\s+to\s+/i);
           const departure = routeParts[0] || route;
           const destination = routeParts[1] || '';
+          
+          // Combine price and duration to match Canadream style
+          const price = duration ? `${rawPrice} (${duration})` : rawPrice;
           
           // Parse dates
           let startDate = datesStr;
@@ -132,7 +141,7 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
           }
           
           if (departure && (destination || startDate)) {
-            results.push({ departure, destination, startDate, endDate, price, vehicleInfo });
+            results.push({ departure, destination, startDate, endDate, price, vehicleInfo, kms });
           }
         }
       });
@@ -168,6 +177,7 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
       url: FRASERWAY_URL,
       scrapedAt: now,
       source: 'fraserway',
+      kms: offer.kms,
     }));
     
     console.log(`[Scraper] Found ${mappedOffers.length} offers from fraserway.com`);

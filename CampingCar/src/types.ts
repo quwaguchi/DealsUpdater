@@ -9,6 +9,8 @@ export interface RelocationOffer {
   url: string;
   scrapedAt: string;
   source: 'canadream' | 'fraserway';
+  kms?: string;
+  extras?: string;
 }
 
 export interface StateData {
