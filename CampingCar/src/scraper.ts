@@ -10,10 +10,15 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
   const page = await browser.newPage();
   
   try {
-    await page.goto(CANADREAM_URL, { waitUntil: 'networkidle' });
+    await page.goto(CANADREAM_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
     
     // Wait for content to load
-    await page.waitForTimeout(2000);
+    await page.waitForSelector(
+        '.relocation-card, .offer-card, [data-qa="relocation-special"]',
+        { timeout: 30000 }
+      ).catch(
+        () => console.log('要素が見つかりませんでした（募集なし）')
+      );
     
     const offers = await page.evaluate(() => {
       const results: any[] = [];
@@ -72,10 +77,15 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
   const page = await browser.newPage();
   
   try {
-    await page.goto(FRASERWAY_URL, { waitUntil: 'networkidle' });
+    await page.goto(FRASERWAY_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
     
     // Wait for content to load
-    await page.waitForTimeout(2000);
+    await page.waitForSelector(
+        '[data-qa="relocation-special"], .relocation-card, .offer-card, .rental-special',
+        { timeout: 30000 }
+      ).catch(
+        () => console.log('[Scraper] Fraserway: 要素が見つかりませんでした（募集なし、または構成変更の可能性）')
+      );
     
     const offers = await page.evaluate(() => {
       const results: any[] = [];
