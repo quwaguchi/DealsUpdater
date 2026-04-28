@@ -63,7 +63,7 @@ function formatEmailBody(offers: RelocationOffer[]): string {
   
   let html = `
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <style>
@@ -90,10 +90,15 @@ function formatEmailBody(offers: RelocationOffer[]): string {
 `;
   
   for (const [source, sourceOffers] of Object.entries(offersBySource)) {
+    if (sourceOffers.length === 0) continue;
+
     const sourceName = source === 'canadream' ? 'Canadream' : 'FraserWay';
+    const sourceUrl = sourceOffers[0].url;
+    const scrapedAt = new Date(sourceOffers[0].scrapedAt).toLocaleString('ja-JP');
+
     html += `
       <div class="source">
-        <div class="source-title">📍 ${escapeHtml(sourceName)} (${sourceOffers.length}件)</div>
+        <div class="source-title">📍 <a href="${sourceUrl}" style="color: #007bff; text-decoration: underline;">${escapeHtml(sourceName)}</a> (${sourceOffers.length}件) <span style="font-size: 0.8em; font-weight: normal; color: #666; margin-left: 10px;">(取得: ${escapeHtml(scrapedAt)})</span></div>
 `;
     
     sourceOffers.forEach((offer, index) => {
@@ -104,7 +109,6 @@ function formatEmailBody(offers: RelocationOffer[]): string {
             <div><span class="offer-detail-label">期間:</span> ${escapeHtml(offer.startDate)} 〜 ${escapeHtml(offer.endDate)}</div>
             <div><span class="offer-detail-label">料金:</span> ${escapeHtml(offer.price)}</div>
             <div><span class="offer-detail-label">車両:</span> ${escapeHtml(offer.vehicleInfo)}</div>
-            <div><span class="offer-detail-label">スクレイプ時刻:</span> ${escapeHtml(new Date(offer.scrapedAt).toLocaleString('ja-JP'))}</div>
           </div>
         </div>
 `;
