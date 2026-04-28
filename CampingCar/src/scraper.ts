@@ -7,26 +7,29 @@ const FRASERWAY_URL = 'https://rent.fraserway.com/en/rv/rental-specials/relocati
 export async function scrapCanadream(): Promise<RelocationOffer[]> {
   console.log('[Scraper] Scraping canadream.com...');
   const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const context = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  });
+  const page = await context.newPage();
   
   try {
-    await page.goto(CANADREAM_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.goto(CANADREAM_URL, { waitUntil: 'networkidle', timeout: 60000 });
     
-    // Wait for content to load
-    await page.waitForSelector(
-        'table.table-striped tbody tr, .relocation-card, .offer-card, [data-qa="relocation-special"]',
-        { timeout: 30000 }
-      ).catch(
-        () => console.log('要素が見つかりませんでした（募集なし）')
-      );
+    // Wait for content to load - being more generic
+    await page.waitForSelector('table, .relocation-card, .offer-card', { timeout: 30000 })
+      .catch(() => console.log('[Scraper] Canadream: Selector timeout, might be no offers or different structure'));
     
     const offers = await page.evaluate(() => {
       const results: any[] = [];
       
-      // Find all offer cards/sections (adjust selector based on actual website structure)
-      const rows = document.querySelectorAll('table.table-striped tbody tr');
+      // Try to find the relocation table
+      const tables = Array.from(document.querySelectorAll('table'));
+      const relocationTable = tables.find(t => 
+        t.textContent?.includes('From') && t.textContent?.includes('To') && t.textContent?.includes('Price')
+      );
       
-      if (rows.length > 0) {
+      if (relocationTable) {
+        const rows = Array.from(relocationTable.querySelectorAll('tbody tr'));
         rows.forEach((row) => {
           const tds = Array.from(row.querySelectorAll('td'));
           if (tds.length >= 6) {
@@ -38,19 +41,14 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
             const price = tds[5]?.textContent?.trim() || '';
             
             if (departure && destination) {
-              results.push({
-                departure,
-                destination,
-                startDate,
-                endDate,
-                price,
-                vehicleInfo,
-              });
+              results.push({ departure, destination, startDate, endDate, vehicleInfo, price });
             }
           }
         });
-      } else {
-        // Fallback to old structure if table is not found
+      }
+      
+      // Fallback to cards if no table found or empty
+      if (results.length === 0) {
         const offerElements = document.querySelectorAll('[data-qa="relocation-special"], .relocation-card, .offer-card');
         offerElements.forEach((element) => {
           const departure = element.querySelector('[data-qa="departure"], .departure, .from')?.textContent?.trim() || '';
@@ -61,14 +59,7 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
           const vehicleInfo = element.querySelector('[data-qa="vehicle"], .vehicle, .vehicle-type')?.textContent?.trim() || '';
           
           if (departure && destination) {
-            results.push({
-              departure,
-              destination,
-              startDate,
-              endDate,
-              price,
-              vehicleInfo,
-            });
+            results.push({ departure, destination, startDate, endDate, price, vehicleInfo });
           }
         });
       }
@@ -100,35 +91,57 @@ export async function scrapCanadream(): Promise<RelocationOffer[]> {
 export async function scrapFraserway(): Promise<RelocationOffer[]> {
   console.log('[Scraper] Scraping fraserway.com...');
   const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const context = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  });
+  const page = await context.newPage();
   
   try {
-    await page.goto(FRASERWAY_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await page.goto(FRASERWAY_URL, { waitUntil: 'networkidle', timeout: 60000 });
     
-    // Wait for content to load
-    await page.waitForSelector(
-        'table.table-striped tbody tr, [data-qa="relocation-special"], .relocation-card, .offer-card, .rental-special',
-        { timeout: 30000 }
-      ).catch(
-        () => console.log('[Scraper] Fraserway: 要素が見つかりませんでした（募集なし、または構成変更の可能性）')
-      );
+    await page.waitForSelector('table, .rental-special', { timeout: 30000 })
+      .catch(() => console.log('[Scraper] Fraserway: Selector timeout'));
     
     const offers = await page.evaluate(() => {
       const results: any[] = [];
       
-      // Find all offer cards/sections (adjust selector based on actual website structure)
-      const rows = document.querySelectorAll('table.table-striped tbody tr');
+      const tables = Array.from(document.querySelectorAll('table'));
+      const relocationTable = tables.find(t => 
+        t.textContent?.includes('Route') || t.textContent?.includes('RV Type')
+      );
       
-      if (rows.length > 0) {
+      if (relocationTable) {
+        const rows = Array.from(relocationTable.querySelectorAll('tbody tr'));
         rows.forEach((row) => {
           const tds = Array.from(row.querySelectorAll('td'));
-          if (tds.length >= 5) {
-            const route = tds[0]?.textContent?.trim() || '';
-            const vehicleInfo = tds[1]?.textContent?.trim() || '';
-            const datesStr = tds[3]?.textContent?.trim() || '';
-            const price = tds[4]?.textContent?.trim() || '';
+          if (tds.length >= 4) {
+            // Based on observed GHA logs, it seems the order might be different or shifted
+            // Let's try to be smarter or at least fix the observed shift
+            let route = '';
+            let vehicleInfo = '';
+            let datesStr = '';
+            let price = '';
+
+            // Check if first column looks like a route (contains " to ")
+            const col0 = tds[0]?.textContent?.trim() || '';
+            const col1 = tds[1]?.textContent?.trim() || '';
             
-            // Parse route (e.g., "Calgary to Whitehorse")
+            if (col0.toLowerCase().includes(' to ')) {
+              // Standard layout
+              route = col0;
+              vehicleInfo = col1;
+              datesStr = tds[3]?.textContent?.trim() || '';
+              price = tds[4]?.textContent?.trim() || '';
+            } else {
+              // Shifted layout or different order (as seen in logs where col0 was vehicle)
+              vehicleInfo = col0;
+              route = col1; // Assume next is route
+              // If col1 doesn't have "to", maybe it's missing
+              datesStr = tds[2]?.textContent?.trim() || '';
+              price = tds[3]?.textContent?.trim() || '';
+            }
+            
+            // Parse route
             const routeParts = route.split(/\s+to\s+/i);
             const departure = routeParts[0] || route;
             const destination = routeParts[1] || '';
@@ -146,19 +159,13 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
             }
             
             if (departure && (destination || startDate)) {
-              results.push({
-                departure,
-                destination,
-                startDate,
-                endDate,
-                price,
-                vehicleInfo,
-              });
+              results.push({ departure, destination, startDate, endDate, price, vehicleInfo });
             }
           }
         });
-      } else {
-        // Fallback to old structure
+      }
+      
+      if (results.length === 0) {
         const offerElements = document.querySelectorAll('[data-qa="relocation-special"], .relocation-card, .offer-card, .rental-special');
         offerElements.forEach((element) => {
           const departure = element.querySelector('[data-qa="departure"], .departure, .from, .pickup')?.textContent?.trim() || '';
@@ -169,14 +176,7 @@ export async function scrapFraserway(): Promise<RelocationOffer[]> {
           const vehicleInfo = element.querySelector('[data-qa="vehicle"], .vehicle, .vehicle-type, .rv-type')?.textContent?.trim() || '';
           
           if (departure && destination) {
-            results.push({
-              departure,
-              destination,
-              startDate,
-              endDate,
-              price,
-              vehicleInfo,
-            });
+            results.push({ departure, destination, startDate, endDate, price, vehicleInfo });
           }
         });
       }
