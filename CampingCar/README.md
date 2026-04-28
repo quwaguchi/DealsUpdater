@@ -62,8 +62,9 @@ npm install
 Create a `.env` file in the `CampingCar` directory:
 
 ```env
-GMAIL_USER=kawaguchi8656@gmail.com
-GMAIL_PASS=your-app-password
+GMAIL_USER
+GMAIL_PASS
+RECIPIENT_EMAIL
 ```
 
 Run the monitoring script:
