@@ -1,8 +1,6 @@
 import nodemailer from 'nodemailer';
 import { RelocationOffer } from './types';
 
-const RECIPIENT_EMAIL = 'kawaguchi8656@gmail.com';
-
 export async function sendNotificationEmail(newOffers: RelocationOffer[]): Promise<boolean> {
   if (newOffers.length === 0) {
     console.log('[Mailer] No new offers to notify');
@@ -11,10 +9,11 @@ export async function sendNotificationEmail(newOffers: RelocationOffer[]): Promi
   
   const gmailUser = process.env.GMAIL_USER;
   const gmailPass = process.env.GMAIL_PASS;
+  const recipientEmail = process.env.RECIPIENT_EMAIL;
   
-  if (!gmailUser || !gmailPass) {
-    console.error('[Mailer] Gmail credentials not found in environment variables (GMAIL_USER, GMAIL_PASS)');
-    throw new Error('Gmail credentials missing');
+  if (!gmailUser || !gmailPass || !recipientEmail) {
+    console.error('[Mailer] Required environment variables (GMAIL_USER, GMAIL_PASS, RECIPIENT_EMAIL) not found');
+    throw new Error('Gmail credentials or recipient email missing');
   }
   
   const transporter = nodemailer.createTransport({
@@ -35,7 +34,7 @@ export async function sendNotificationEmail(newOffers: RelocationOffer[]): Promi
     
     const mailOptions = {
       from: gmailUser,
-      to: RECIPIENT_EMAIL,
+      to: recipientEmail,
       subject: `🚐 新しいRelocation Specialsが見つかりました (${newOffers.length}件)`,
       html: emailBody,
       text: emailBody.replace(/<[^>]*>/g, ''),
@@ -48,6 +47,15 @@ export async function sendNotificationEmail(newOffers: RelocationOffer[]): Promi
     console.error('[Mailer] Error sending email:', error);
     throw error;
   }
+}
+
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function formatEmailBody(offers: RelocationOffer[]): string {
@@ -85,18 +93,18 @@ function formatEmailBody(offers: RelocationOffer[]): string {
     const sourceName = source === 'canadream' ? 'Canadream' : 'FraserWay';
     html += `
       <div class="source">
-        <div class="source-title">📍 ${sourceName} (${sourceOffers.length}件)</div>
+        <div class="source-title">📍 ${escapeHtml(sourceName)} (${sourceOffers.length}件)</div>
 `;
     
     sourceOffers.forEach((offer, index) => {
       html += `
         <div class="offer">
-          <div class="offer-title">${index + 1}. ${offer.departure} → ${offer.destination}</div>
+          <div class="offer-title">${index + 1}. ${escapeHtml(offer.departure)} → ${escapeHtml(offer.destination)}</div>
           <div class="offer-detail">
-            <div><span class="offer-detail-label">期間:</span> ${offer.startDate} 〜 ${offer.endDate}</div>
-            <div><span class="offer-detail-label">料金:</span> ${offer.price}</div>
-            <div><span class="offer-detail-label">車両:</span> ${offer.vehicleInfo}</div>
-            <div><span class="offer-detail-label">スクレイプ時刻:</span> ${new Date(offer.scrapedAt).toLocaleString('ja-JP')}</div>
+            <div><span class="offer-detail-label">期間:</span> ${escapeHtml(offer.startDate)} 〜 ${escapeHtml(offer.endDate)}</div>
+            <div><span class="offer-detail-label">料金:</span> ${escapeHtml(offer.price)}</div>
+            <div><span class="offer-detail-label">車両:</span> ${escapeHtml(offer.vehicleInfo)}</div>
+            <div><span class="offer-detail-label">スクレイプ時刻:</span> ${escapeHtml(new Date(offer.scrapedAt).toLocaleString('ja-JP'))}</div>
           </div>
         </div>
 `;
