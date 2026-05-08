@@ -3,7 +3,7 @@ name: ZipAir Flight Monitor
 on:
   schedule:
     # Run every hour
-    - cron: '30 * * * *'
+    # - cron: '30 * * * *'
   workflow_dispatch:
 
 permissions:
