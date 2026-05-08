@@ -30,47 +30,102 @@ export async function scrapeZipAir(): Promise<FlightOffer[]> {
     });
 
     console.log('[Scraper] Navigating to ZipAir...');
-    await page.goto(ZIPAIR_URL, { waitUntil: 'networkidle', timeout: 90000 });
-    console.log('[Scraper] Page loaded. Title:', await page.title());
-
-    // Handle possible cookie consent or country selection popups
-    console.log('[Scraper] Checking for popups...');
-    // Sometimes there is a language selection or region selection modal
-    await page.click('button:has-text("English"), button:has-text("United States"), button:has-text("Canada")').catch(() => {});
-    await page.click('button:has-text("Accept"), button:has-text("OK"), .cookie-consent-button, .close-button').catch(() => {});
-
-    // 1. Select "One Way Including transit"
-    console.log('[Scraper] Selecting One Way...');
-    const oneWaySelector = 'label:has-text("One Way"), label:has-text("One way"), [for*="oneWay"]';
-    try {
-      await page.waitForSelector(oneWaySelector, { timeout: 30000 });
-    } catch (e) {
-      console.log('[Scraper] One Way selector not found, taking screenshot...');
-      await page.screenshot({ path: 'selector-not-found.png' });
-      throw e;
-    }
+    await page.goto(ZIPAIR_URL, { waitUntil: 'domcontentloaded', timeout: 90000 });
     
-    // Check if the exact text from user "One Way Including transit" exists
-    const exactOneWay = page.locator('label').filter({ hasText: /^One Way/i });
-    if (await exactOneWay.count() > 0) {
-      await exactOneWay.first().click();
-    } else {
-      await page.click(oneWaySelector);
+    // Clear cookies and storage just in case, though context is fresh
+    await context.clearCookies();
+    await page.evaluate(() => localStorage.clear());
+    await page.evaluate(() => sessionStorage.clear());
+    
+    // Reload to ensure a clean state
+    await page.goto(ZIPAIR_URL, { waitUntil: 'networkidle', timeout: 90000 });
+    console.log('[Scraper] Page loaded/reloaded. Title:', await page.title());
+
+    // Handle possible cookie consent, country selection, or language popups
+    console.log('[Scraper] Handling potential blocking modals...');
+    const closeButtons = [
+      'button:has-text("Accept")',
+      'button:has-text("OK")',
+      'button:has-text("Close")',
+      '.cookie-consent-button',
+      '.modal-close',
+      '.close-button',
+      '[aria-label="Close"]'
+    ];
+    
+    for (const selector of closeButtons) {
+      await page.click(selector, { timeout: 2000 }).catch(() => {});
+    }
+
+    // Special handling for language/region selection which often appears on first visit
+    await page.click('button:has-text("United States"), button:has-text("Global")').catch(() => {});
+
+    // 1. Select "One Way"
+    console.log('[Scraper] Selecting One Way...');
+    // ZipAir's search form might take a moment to be interactive
+    await page.waitForTimeout(3000); 
+
+    const oneWaySelectors = [
+      'text="One Way"',
+      'text="One way"',
+      'label:has-text("One Way")',
+      'label:has-text("One way")',
+      '[for*="oneWay"]'
+    ];
+
+    let found = false;
+    for (const selector of oneWaySelectors) {
+      if (await page.locator(selector).isVisible()) {
+        console.log(`[Scraper] Found One Way via: ${selector}`);
+        await page.click(selector);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      console.log('[Scraper] One Way selector not found via standard list, trying broad search...');
+      const labels = page.locator('label, button, span');
+      const count = await labels.count();
+      for (let i = 0; i < count; i++) {
+        const text = await labels.nth(i).textContent();
+        if (text?.toLowerCase().includes('one way')) {
+          console.log(`[Scraper] Clicking element with text: ${text}`);
+          await labels.nth(i).click();
+          found = true;
+          break;
+        }
+      }
+    }
+
+    if (!found) {
+      await page.screenshot({ path: 'one-way-not-found.png' });
+      throw new Error('Could not find One Way selection');
     }
 
     // 2. Set Origin "Tokyo"
     console.log('[Scraper] Setting Origin...');
-    await page.click('.origin-select-button, button:has-text("Origin"), [data-testid="origin-select"]');
-    await page.fill('input[placeholder*="Origin"], input[placeholder*="From"]', 'Tokyo');
-    await page.waitForTimeout(1000);
-    await page.click('li:has-text("Tokyo"), .location-list-item:has-text("Tokyo")');
+    const originButton = page.locator('.origin-select-button, button:has-text("Origin"), [data-testid="origin-select"], .origin-select');
+    await originButton.first().click().catch(() => console.log('[Scraper] Origin button click failed, trying anyway...'));
+    
+    const originInput = page.locator('input[placeholder*="Origin"], input[placeholder*="From"], .origin-input input');
+    await originInput.first().fill('Tokyo');
+    await page.waitForTimeout(1500); // Wait for results to appear
+    
+    const originResult = page.locator('li:has-text("Tokyo"), .location-list-item:has-text("Tokyo"), [role="option"]:has-text("Tokyo")');
+    await originResult.first().click();
 
     // 3. Set Destination "Vancouver"
     console.log('[Scraper] Setting Destination...');
-    await page.click('.destination-select-button, button:has-text("Destination"), [data-testid="destination-select"]');
-    await page.fill('input[placeholder*="Destination"], input[placeholder*="To"]', 'Vancouver');
-    await page.waitForTimeout(1000);
-    await page.click('li:has-text("Vancouver"), .location-list-item:has-text("Vancouver")');
+    const destButton = page.locator('.destination-select-button, button:has-text("Destination"), [data-testid="destination-select"], .destination-select');
+    await destButton.first().click().catch(() => {});
+    
+    const destInput = page.locator('input[placeholder*="Destination"], input[placeholder*="To"], .destination-input input');
+    await destInput.first().fill('Vancouver');
+    await page.waitForTimeout(1500);
+    
+    const destResult = page.locator('li:has-text("Vancouver"), .location-list-item:has-text("Vancouver"), [role="option"]:has-text("Vancouver")');
+    await destResult.first().click();
 
     // 4. Click "Search Flight"
     console.log('[Scraper] Clicking Search Flight...');
@@ -98,21 +153,21 @@ export async function scrapeZipAir(): Promise<FlightOffer[]> {
     // Loop to find August 2026
     let foundAugust = false;
     for (let i = 0; i < 24; i++) { // Max 24 months ahead
-      const monthYear = await page.textContent('body'); // Broad check
-      if (monthYear?.includes('August 2026') || monthYear?.includes('Aug. 2026')) {
+      const bodyText = await page.textContent('body');
+      if (bodyText?.match(/August\s+2026|Aug\.\s+2026|Aug\s+2026/i)) {
         foundAugust = true;
         console.log('[Scraper] Found August 2026');
         break;
       }
       
-      const nextMonthButton = page.locator('button:has-text("Next"), .next-month-button, .arrow-right').first();
+      const nextMonthButton = page.locator('button:has-text("Next"), .next-month-button, .arrow-right, [aria-label*="Next month"]').first();
       if (await nextMonthButton.isVisible()) {
         await nextMonthButton.click();
-        await page.waitForTimeout(1000); // Wait for API
+        await page.waitForTimeout(1500); // Wait for API
       } else {
-        // Try scrolling if button is not found
+        console.log('[Scraper] Next month button not found, trying scroll...');
         await page.mouse.wheel(0, 500);
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(1000);
       }
     }
 
