@@ -41,6 +41,13 @@ jobs:
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
         run: npm run dev
 
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zipair-error-screenshots
+          path: ZipAir/*.png
+
       - name: Commit and push state update
         if: always()
         run: |

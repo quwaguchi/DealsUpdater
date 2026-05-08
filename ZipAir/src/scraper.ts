@@ -7,7 +7,9 @@ export async function scrapeZipAir(): Promise<FlightOffer[]> {
   console.log('[Scraper] Starting ZipAir scraper...');
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    locale: 'en-US',
+    timezoneId: 'America/Vancouver',
   });
   const page = await context.newPage();
   
@@ -17,62 +19,81 @@ export async function scrapeZipAir(): Promise<FlightOffer[]> {
     // Listen for API responses
     page.on('response', async (response: Response) => {
       const url = response.url();
-      // ZipAir's calendar API usually matches this pattern
       if (url.includes('/api/search/calendar') || url.includes('/api/v1/fare/calendar') || url.includes('booking/calendar')) {
         try {
-          const status = response.status();
-          if (status === 200) {
+          if (response.status() === 200) {
             const data = await response.json();
-            // console.log('[Scraper] Intercepted API response from:', url);
             extractOffersFromData(data, flightOffers);
           }
-        } catch (e) {
-          // Some responses might not be JSON or might fail to parse
-        }
+        } catch (e) {}
       }
     });
 
-    await page.goto(ZIPAIR_URL, { waitUntil: 'networkidle' });
+    console.log('[Scraper] Navigating to ZipAir...');
+    await page.goto(ZIPAIR_URL, { waitUntil: 'networkidle', timeout: 90000 });
+    console.log('[Scraper] Page loaded. Title:', await page.title());
 
-    // 1. Select "One Way"
-    // The selector might vary, usually it's a radio button or a clickable div/label
+    // Handle possible cookie consent or country selection popups
+    console.log('[Scraper] Checking for popups...');
+    // Sometimes there is a language selection or region selection modal
+    await page.click('button:has-text("English"), button:has-text("United States"), button:has-text("Canada")').catch(() => {});
+    await page.click('button:has-text("Accept"), button:has-text("OK"), .cookie-consent-button, .close-button').catch(() => {});
+
+    // 1. Select "One Way Including transit"
     console.log('[Scraper] Selecting One Way...');
-    await page.click('label:has-text("One Way")');
+    const oneWaySelector = 'label:has-text("One Way"), label:has-text("One way"), [for*="oneWay"]';
+    try {
+      await page.waitForSelector(oneWaySelector, { timeout: 30000 });
+    } catch (e) {
+      console.log('[Scraper] One Way selector not found, taking screenshot...');
+      await page.screenshot({ path: 'selector-not-found.png' });
+      throw e;
+    }
+    
+    // Check if the exact text from user "One Way Including transit" exists
+    const exactOneWay = page.locator('label').filter({ hasText: /^One Way/i });
+    if (await exactOneWay.count() > 0) {
+      await exactOneWay.first().click();
+    } else {
+      await page.click(oneWaySelector);
+    }
 
-    // 2. Set Origin "Tokyo (NRT)"
+    // 2. Set Origin "Tokyo"
     console.log('[Scraper] Setting Origin...');
-    await page.click('button:has-text("Origin"), .origin-select-button');
-    await page.fill('input[placeholder*="From"], input[placeholder*="Origin"]', 'Tokyo');
-    await page.click('li:has-text("Tokyo")');
+    await page.click('.origin-select-button, button:has-text("Origin"), [data-testid="origin-select"]');
+    await page.fill('input[placeholder*="Origin"], input[placeholder*="From"]', 'Tokyo');
+    await page.waitForTimeout(1000);
+    await page.click('li:has-text("Tokyo"), .location-list-item:has-text("Tokyo")');
 
-    // 3. Set Destination "Vancouver (YVR)"
+    // 3. Set Destination "Vancouver"
     console.log('[Scraper] Setting Destination...');
-    await page.click('button:has-text("Destination"), .destination-select-button');
-    await page.fill('input[placeholder*="To"], input[placeholder*="Destination"]', 'Vancouver');
-    await page.click('li:has-text("Vancouver")');
+    await page.click('.destination-select-button, button:has-text("Destination"), [data-testid="destination-select"]');
+    await page.fill('input[placeholder*="Destination"], input[placeholder*="To"]', 'Vancouver');
+    await page.waitForTimeout(1000);
+    await page.click('li:has-text("Vancouver"), .location-list-item:has-text("Vancouver")');
 
     // 4. Click "Search Flight"
     console.log('[Scraper] Clicking Search Flight...');
-    await page.click('button:has-text("Search Flight")');
+    const searchButton = page.locator('button:has-text("Search Flight"), .search-button');
+    await searchButton.waitFor({ state: 'visible', timeout: 15000 });
+    await searchButton.click();
 
-    // 5. Handle "Next" popup
-    console.log('[Scraper] Handling popups...');
-    await page.waitForSelector('button:has-text("Next")', { timeout: 10000 }).catch(() => {});
-    await page.click('button:has-text("Next")').catch(() => {});
+    // 5. Handle the first "Next" popup after Search Flight
+    console.log('[Scraper] Handling first "Next" popup...');
+    const firstNext = page.locator('button:has-text("Next"), .next-button').first();
+    await firstNext.waitFor({ state: 'visible', timeout: 15000 });
+    await firstNext.click();
 
-    // 6. Select "Adult" 1 and click "Next"
-    console.log('[Scraper] Selecting Passengers...');
-    await page.waitForSelector('button:has-text("Next")', { timeout: 10000 });
-    // Usually starts with 1 Adult by default, but let's ensure it's there
-    await page.click('button:has-text("Next")');
+    // 6. "Select Number of Passengers" screen - Click "Next" (Adult is usually 1 by default)
+    console.log('[Scraper] Handling "Select Number of Passengers" screen...');
+    await page.waitForTimeout(2000); // Small wait for transition
+    const secondNext = page.locator('button:has-text("Next"), .next-button').first();
+    await secondNext.waitFor({ state: 'visible', timeout: 15000 });
+    await secondNext.click();
 
     // 7. On "Select Date" screen, wait for data to load
-    console.log('[Scraper] Waiting for calendar data...');
-    // We scroll or wait to trigger API calls for August 2026
-    // Since we are looking for August 2026, we might need to click "Next Month" multiple times
-    
-    // We'll wait for the calendar to appear
-    await page.waitForSelector('.calendar, .date-selection-container', { timeout: 30000 });
+    console.log('[Scraper] Waiting for "Select Date" screen and calendar data...');
+    await page.waitForSelector('.calendar, .date-selection-container, text=Select Date', { timeout: 30000 });
 
     // Loop to find August 2026
     let foundAugust = false;
