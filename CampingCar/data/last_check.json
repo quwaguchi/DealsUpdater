@@ -1,58 +1,30 @@
 {
-  "lastUpdated": "2026-06-03T12:29:49.446Z",
+  "lastUpdated": "2026-06-03T17:56:46.932Z",
   "offers": [
     {
-      "id": "55e5540a",
-      "departure": "Calgary / Edmonton",
-      "destination": "Whitehorse",
-      "startDate": "27 May 2026\n                                1:00pm - 4:00pm",
-      "endDate": "06 June 2026\n                                10:00am",
-      "price": "$59.00\n                                 per night for up to 14 nights*",
-      "vehicleInfo": "Compact Motorhome MHC",
-      "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:48.282Z",
-      "source": "canadream",
-      "kms": "3500",
-      "extras": "Free Kitchen & Linen Kits, 3500km, Extra Driver, US Driving Fee"
-    },
-    {
-      "id": "756c7d80",
+      "id": "64167e7",
       "departure": "Toronto",
       "destination": "Halifax",
-      "startDate": "27 May 2026\n                                1:00pm - 4:00pm",
-      "endDate": "10 June 2026\n                                10:00am",
+      "startDate": "03 June 2026\n                                1:00pm - 4:00pm",
+      "endDate": "15 June 2026\n                                10:00am",
       "price": "$19.00\n                                 per night for up to 14 nights*",
-      "vehicleInfo": "Saver 2",
+      "vehicleInfo": "Saver 4",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:48.282Z",
+      "scrapedAt": "2026-06-03T17:56:43.725Z",
       "source": "canadream",
       "kms": "2000",
       "extras": "Free One-Way-Fee, $200 Fuel Credit"
     },
     {
-      "id": "1a58e8b4",
-      "departure": "Toronto",
-      "destination": "Vancouver / Calgary",
-      "startDate": "27 May 2026\n                                1:00pm - 4:00pm",
-      "endDate": "15 June 2026\n                                10:00am",
-      "price": "$19.00\n                                 per night for a minimum of 3 nights*",
-      "vehicleInfo": "Deluxe Van CamperSuper Van Camper",
-      "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:48.282Z",
-      "source": "canadream",
-      "kms": "5000",
-      "extras": "Free One-Way-Fee, $800 Fuel Credit"
-    },
-    {
-      "id": "212a0f7",
+      "id": "1dce382",
       "departure": "Toronto / Montreal",
       "destination": "Vancouver / Calgary",
-      "startDate": "27 May 2026\n                                1:00pm - 4:00pm",
+      "startDate": "03 June 2026\n                                1:00pm - 4:00pm",
       "endDate": "15 June 2026\n                                10:00am",
       "price": "$19.00\n                                 per night for up to 21 nights*",
       "vehicleInfo": "Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:48.282Z",
+      "scrapedAt": "2026-06-03T17:56:43.725Z",
       "source": "canadream",
       "kms": "5000",
       "extras": "Free One-Way-Fee, $800 Fuel Credit"
@@ -66,7 +38,7 @@
       "price": "$29 (Up to 14 nights)",
       "vehicleInfo": "Truck Camper",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "2,500 km"
     },
@@ -79,7 +51,7 @@
       "price": "$99 (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,500 km"
     },
@@ -92,7 +64,7 @@
       "price": "$49 (Up to 5 nights)",
       "vehicleInfo": "Truck Camper Slide Dinette",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,500 km"
     },
@@ -105,7 +77,7 @@
       "price": "$99 (Up to 5 nights)",
       "vehicleInfo": "C XLarge",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,500 km"
     },
@@ -118,7 +90,7 @@
       "price": "$99 (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "750 km"
     },
@@ -131,7 +103,7 @@
       "price": "$29 (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "750 km"
     },
@@ -144,7 +116,7 @@
       "price": "$1 (Up to 3 nights)",
       "vehicleInfo": "C Large",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -157,7 +129,7 @@
       "price": "$49 (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -170,7 +142,7 @@
       "price": "$49 (Up to 5 nights)",
       "vehicleInfo": "C Medium",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -183,7 +155,7 @@
       "price": "$1 (Up to 5 nights)",
       "vehicleInfo": "C Large",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -196,7 +168,7 @@
       "price": "$1 (Up to 5 nights)",
       "vehicleInfo": "Truck Camper Scout",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -209,7 +181,7 @@
       "price": "$29 (Up to 3 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -222,7 +194,7 @@
       "price": "$29 (Up to 3 nights)",
       "vehicleInfo": "C Large",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -235,7 +207,7 @@
       "price": "$99 (Up to 3 nights)",
       "vehicleInfo": "C XLarge",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -248,7 +220,7 @@
       "price": "$29 (Up to 3 nights)",
       "vehicleInfo": "Truck Camper",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -261,7 +233,7 @@
       "price": "$99 (Up to 3 nights)",
       "vehicleInfo": "B+ Premium",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -274,7 +246,7 @@
       "price": "$49 (Up to 3 nights)",
       "vehicleInfo": "C Large",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -287,7 +259,7 @@
       "price": "$49 (Up to 3 nights)",
       "vehicleInfo": "Van Conversion",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "500 km"
     },
@@ -300,7 +272,7 @@
       "price": "$1 (Up to 5 nights)",
       "vehicleInfo": "Truck Camper Slide Bunk",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -313,7 +285,7 @@
       "price": "$49 (Up to 5 nights)",
       "vehicleInfo": "C Medium",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-06-03T12:29:49.411Z",
+      "scrapedAt": "2026-06-03T17:56:45.122Z",
       "source": "fraserway",
       "kms": "1,500 km"
     }
