@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2026-09-01T21:33:15.036Z",
+  "lastUpdated": "2026-09-01T23:39:42.863Z",
   "offers": [
     {
-      "id": "60d864f6",
-      "departure": "Abbotsford",
-      "destination": "Calgary",
-      "startDate": "Between September 12 and September 14, 2026",
+      "id": "4ac9c55a",
+      "departure": "Calgary",
+      "destination": "Edmonton",
+      "startDate": "Between September 3 and September 9, 2026",
       "endDate": "",
-      "price": "$99/night (Up to 2 nights)",
+      "price": "$99/night (Up to 3 nights)",
       "vehicleInfo": "C Large (Four Seasons)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
-      "kms": "1,000 km"
+      "kms": "500 km"
     },
     {
       "id": "d3e082",
@@ -23,22 +23,9 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "C Medium (Four Seasons)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "1,500 km"
-    },
-    {
-      "id": "73e3775d",
-      "departure": "Toronto",
-      "destination": "Halifax",
-      "startDate": "Between September 3 and September 14, 2026",
-      "endDate": "",
-      "price": "$99/night (Up to 5 nights)",
-      "vehicleInfo": "C Small (Four Seasons)",
-      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
-      "source": "fraserway",
-      "kms": "2,000 km"
     },
     {
       "id": "59b30e",
@@ -49,7 +36,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "Truck Camper",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "2,000 km"
     },
@@ -62,22 +49,9 @@
       "price": "$1/night (1 night only)",
       "vehicleInfo": "Truck Camper",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "1,500 km"
-    },
-    {
-      "id": "5f0e98e9",
-      "departure": "Montreal",
-      "destination": "Toronto",
-      "startDate": "Now",
-      "endDate": "September 19, 2026",
-      "price": "$99/night (Up to 5 nights)",
-      "vehicleInfo": "Truck Camper Slide Bunk",
-      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
-      "source": "fraserway",
-      "kms": "800 km"
     },
     {
       "id": "6a137720",
@@ -88,7 +62,7 @@
       "price": "$99/night (Up to 3 nights)",
       "vehicleInfo": "Truck Camper Scout",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -101,7 +75,7 @@
       "price": "$1/night (1 night only)",
       "vehicleInfo": "B+ Premium",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -114,7 +88,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "Van Conversion",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "1,500 km"
     },
@@ -127,7 +101,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "Van Conversion",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-01T21:33:15.005Z",
+      "scrapedAt": "2026-09-01T23:39:41.040Z",
       "source": "fraserway",
       "kms": "1,000 km"
     }
