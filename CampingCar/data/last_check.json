@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-06T16:33:30.544Z",
+  "lastUpdated": "2026-09-06T18:44:09.271Z",
   "offers": [
     {
       "id": "59b30e",
@@ -10,7 +10,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "Truck Camper",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-06T16:33:30.505Z",
+      "scrapedAt": "2026-09-06T18:44:09.231Z",
       "source": "fraserway",
       "kms": "2,000 km"
     },
@@ -23,7 +23,7 @@
       "price": "$1/night (1 night only)",
       "vehicleInfo": "Truck Camper ($200 fuel voucher)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-06T16:33:30.505Z",
+      "scrapedAt": "2026-09-06T18:44:09.231Z",
       "source": "fraserway",
       "kms": "1,500 km"
     },
@@ -36,7 +36,7 @@
       "price": "$1/night (1 night only)",
       "vehicleInfo": "B+ Premium",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-06T16:33:30.505Z",
+      "scrapedAt": "2026-09-06T18:44:09.231Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -49,7 +49,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "Van Conversion",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-06T16:33:30.505Z",
+      "scrapedAt": "2026-09-06T18:44:09.231Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -62,7 +62,7 @@
       "price": "$49/night (Up to 3 nights)",
       "vehicleInfo": "Van Conversion",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-06T16:33:30.505Z",
+      "scrapedAt": "2026-09-06T18:44:09.231Z",
       "source": "fraserway",
       "kms": "1,500 km"
     }
