@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-09T23:39:03.306Z",
+  "lastUpdated": "2026-09-10T01:55:23.187Z",
   "offers": [
     {
       "id": "2859124",
@@ -10,7 +10,7 @@
       "price": "$99.00\n                                 for up to 14 nights*",
       "vehicleInfo": "Maxi Travel Camper",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-09-09T23:39:01.764Z",
+      "scrapedAt": "2026-09-10T01:55:21.645Z",
       "source": "canadream",
       "kms": "3000",
       "extras": "Free One-Way-Fee, Whitehorse Surcharge, Kitchen and Linen Kits, Lawn Chairs, US Driving Fee, 1x Extra Driver"
@@ -24,7 +24,7 @@
       "price": "$99.00\n                                 for up to 14 nights*",
       "vehicleInfo": "Compact Motorhome MHC",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-09-09T23:39:01.764Z",
+      "scrapedAt": "2026-09-10T01:55:21.645Z",
       "source": "canadream",
       "kms": "3000",
       "extras": "Free One-Way-Fee, Whitehorse Surcharge, Kitchen and Linen Kits, Lawn Chairs, US Driving Fee, 1x Extra Driver"
@@ -38,7 +38,7 @@
       "price": "$1/night (1 night only)",
       "vehicleInfo": "B+ Premium",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-09T23:39:03.272Z",
+      "scrapedAt": "2026-09-10T01:55:23.157Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -51,7 +51,7 @@
       "price": "$1/night (Up to 2 nights)",
       "vehicleInfo": "C Medium ($100 fuel voucher)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-09T23:39:03.272Z",
+      "scrapedAt": "2026-09-10T01:55:23.157Z",
       "source": "fraserway",
       "kms": "1,000 km"
     },
@@ -64,7 +64,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-09T23:39:03.272Z",
+      "scrapedAt": "2026-09-10T01:55:23.157Z",
       "source": "fraserway",
       "kms": "2,000 km"
     }
