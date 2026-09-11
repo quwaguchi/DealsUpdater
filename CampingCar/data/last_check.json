@@ -1,20 +1,6 @@
 {
-  "lastUpdated": "2026-09-11T15:27:26.159Z",
+  "lastUpdated": "2026-09-11T18:51:13.523Z",
   "offers": [
-    {
-      "id": "2859124",
-      "departure": "Whitehorse",
-      "destination": "Vancouver / Calgary / Edmonton",
-      "startDate": "25 September 2026\n                                1:00pm - 4:00pm",
-      "endDate": "09 October 2026\n                                10:00am",
-      "price": "$99.00\n                                 for up to 14 nights*",
-      "vehicleInfo": "Maxi Travel Camper",
-      "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-09-11T15:27:24.827Z",
-      "source": "canadream",
-      "kms": "3000",
-      "extras": "Free One-Way-Fee, Whitehorse Surcharge, Kitchen and Linen Kits, Lawn Chairs, US Driving Fee, 1x Extra Driver"
-    },
     {
       "id": "b8671e",
       "departure": "Whitehorse",
@@ -24,7 +10,7 @@
       "price": "$99.00\n                                 for up to 14 nights*",
       "vehicleInfo": "Compact Motorhome MHC",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-09-11T15:27:24.827Z",
+      "scrapedAt": "2026-09-11T18:51:10.050Z",
       "source": "canadream",
       "kms": "3000",
       "extras": "Free One-Way-Fee, Whitehorse Surcharge, Kitchen and Linen Kits, Lawn Chairs, US Driving Fee, 1x Extra Driver"
@@ -38,7 +24,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-11T15:27:26.120Z",
+      "scrapedAt": "2026-09-11T18:51:13.486Z",
       "source": "fraserway",
       "kms": "2,000 km"
     }
