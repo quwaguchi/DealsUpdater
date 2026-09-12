@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-12T17:31:22.676Z",
+  "lastUpdated": "2026-09-12T19:49:31.685Z",
   "offers": [
     {
       "id": "b8671e",
@@ -10,7 +10,7 @@
       "price": "$99.00\n                                 for up to 14 nights*",
       "vehicleInfo": "Compact Motorhome MHC",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-09-12T17:31:21.049Z",
+      "scrapedAt": "2026-09-12T19:49:30.330Z",
       "source": "canadream",
       "kms": "3000",
       "extras": "Free One-Way-Fee, Whitehorse Surcharge, Kitchen and Linen Kits, Lawn Chairs, US Driving Fee, 1x Extra Driver"
@@ -24,7 +24,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "C Small",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-12T17:31:22.645Z",
+      "scrapedAt": "2026-09-12T19:49:31.651Z",
       "source": "fraserway",
       "kms": "2,000 km"
     }
