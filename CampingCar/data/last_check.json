@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-22T19:21:38.281Z",
+  "lastUpdated": "2026-09-22T22:29:44.713Z",
   "offers": [
     {
       "id": "5f0e98e9",
@@ -10,7 +10,7 @@
       "price": "$99/night (Up to 5 nights)",
       "vehicleInfo": "C Large",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-22T19:21:38.254Z",
+      "scrapedAt": "2026-09-22T22:29:44.683Z",
       "source": "fraserway",
       "kms": "1,500 km"
     }
