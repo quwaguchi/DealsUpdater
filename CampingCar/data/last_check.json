@@ -1,6 +1,20 @@
 {
-  "lastUpdated": "2026-09-29T09:13:31.122Z",
+  "lastUpdated": "2026-09-29T16:13:06.289Z",
   "offers": [
+    {
+      "id": "284794c6",
+      "departure": "Toronto / Montreal / Halifax",
+      "destination": "Calgary / Edmonton",
+      "startDate": "30 September 2026\n                                1:00pm - 4:00pm",
+      "endDate": "15 October 2026\n                                10:00am",
+      "price": "$29.00\n                                 for up to 10 nights*",
+      "vehicleInfo": "Saver 2Saver 4Saver 6",
+      "url": "https://www.canadream.com/special-offers/relocation-specials/",
+      "scrapedAt": "2026-09-29T16:13:02.301Z",
+      "source": "canadream",
+      "kms": "5000",
+      "extras": "Free One-Way-Fee, Free 5000km"
+    },
     {
       "id": "46897808",
       "departure": "Halifax",
@@ -10,7 +24,7 @@
       "price": "$49/night (Up to 5 nights)",
       "vehicleInfo": "C Large",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-09-29T09:13:31.089Z",
+      "scrapedAt": "2026-09-29T16:13:03.581Z",
       "source": "fraserway",
       "kms": "2,000 km"
     }
