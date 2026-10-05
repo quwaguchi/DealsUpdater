@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-05T16:33:37.252Z",
+  "lastUpdated": "2026-10-05T22:59:10.136Z",
   "offers": [
     {
       "id": "284794c6",
@@ -10,10 +10,62 @@
       "price": "$29.00\n                                 for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-05T16:33:06.354Z",
+      "scrapedAt": "2026-10-05T22:59:05.282Z",
       "source": "canadream",
       "kms": "5000",
       "extras": "Free One-Way-Fee, Free 5000km"
+    },
+    {
+      "id": "4c7a851c",
+      "departure": "Halifax",
+      "destination": "Vancouver",
+      "startDate": "Now",
+      "endDate": "October 31, 2026",
+      "price": "$19/night (Up to 14 nights)",
+      "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
+      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
+      "scrapedAt": "2026-10-05T22:59:06.772Z",
+      "source": "fraserway",
+      "kms": "6,500 km"
+    },
+    {
+      "id": "f10aff6",
+      "departure": "Halifax",
+      "destination": "Calgary",
+      "startDate": "Now",
+      "endDate": "October 31, 2026",
+      "price": "$19/night (Up to 14 nights)",
+      "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
+      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
+      "scrapedAt": "2026-10-05T22:59:06.772Z",
+      "source": "fraserway",
+      "kms": "5,000 km"
+    },
+    {
+      "id": "12592762",
+      "departure": "Toronto",
+      "destination": "Vancouver",
+      "startDate": "Between October 10 and October 31, 2026",
+      "endDate": "",
+      "price": "$19/night (Up to 14 nights)",
+      "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
+      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
+      "scrapedAt": "2026-10-05T22:59:06.772Z",
+      "source": "fraserway",
+      "kms": "5,000 km"
+    },
+    {
+      "id": "4941e8d0",
+      "departure": "Toronto",
+      "destination": "Calgary",
+      "startDate": "Between October 10 and October 31, 2026",
+      "endDate": "",
+      "price": "$19/night (Up to 14 nights)",
+      "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
+      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
+      "scrapedAt": "2026-10-05T22:59:06.772Z",
+      "source": "fraserway",
+      "kms": "4,000 km"
     }
   ]
 }
