@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-06T21:21:34.726Z",
+  "lastUpdated": "2026-10-07T01:06:26.348Z",
   "offers": [
     {
       "id": "2e9fbae3",
@@ -10,7 +10,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:31.481Z",
+      "scrapedAt": "2026-10-07T01:06:22.471Z",
       "source": "canadream",
       "kms": "2000",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -24,7 +24,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Maxi Motorhome",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:31.481Z",
+      "scrapedAt": "2026-10-07T01:06:22.471Z",
       "source": "canadream",
       "kms": "2000",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -38,7 +38,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:31.481Z",
+      "scrapedAt": "2026-10-07T01:06:22.471Z",
       "source": "canadream",
       "kms": "1500",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -52,21 +52,21 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Maxi Motorhome",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:31.481Z",
+      "scrapedAt": "2026-10-07T01:06:22.471Z",
       "source": "canadream",
       "kms": "1500",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
     },
     {
-      "id": "284794c6",
+      "id": "bbd9e6d",
       "departure": "Toronto / Montreal / Halifax",
       "destination": "Calgary / Edmonton",
-      "startDate": "30 September 2026\n                                1:00pm - 4:00pm",
-      "endDate": "15 October 2026\n                                10:00am",
+      "startDate": "07 October 2026\n                                1:00pm - 4:00pm",
+      "endDate": "30 October 2026\n                                10:00am",
       "price": "$29.00\n                                 for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:31.481Z",
+      "scrapedAt": "2026-10-07T01:06:22.471Z",
       "source": "canadream",
       "kms": "5000",
       "extras": "Free One-Way-Fee, Free 5000km"
@@ -80,7 +80,7 @@
       "price": "$19/night (Up to 14 nights)",
       "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:32.964Z",
+      "scrapedAt": "2026-10-07T01:06:23.917Z",
       "source": "fraserway",
       "kms": "6,500 km"
     },
@@ -93,7 +93,7 @@
       "price": "$19/night (Up to 14 nights)",
       "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:32.964Z",
+      "scrapedAt": "2026-10-07T01:06:23.917Z",
       "source": "fraserway",
       "kms": "5,000 km"
     },
@@ -106,7 +106,7 @@
       "price": "$19/night (Up to 14 nights)",
       "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:32.964Z",
+      "scrapedAt": "2026-10-07T01:06:23.917Z",
       "source": "fraserway",
       "kms": "5,000 km"
     },
@@ -119,7 +119,7 @@
       "price": "$19/night (Up to 14 nights)",
       "vehicleInfo": "Truck Camper ($1,000 fuel voucher)",
       "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-10-06T21:21:32.964Z",
+      "scrapedAt": "2026-10-07T01:06:23.917Z",
       "source": "fraserway",
       "kms": "4,000 km"
     }
