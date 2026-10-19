@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-19T15:59:32.822Z",
+  "lastUpdated": "2026-10-19T20:54:07.950Z",
   "offers": [
     {
       "id": "2e9fbae3",
@@ -10,7 +10,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:31.879Z",
+      "scrapedAt": "2026-10-19T20:53:36.895Z",
       "source": "canadream",
       "kms": "2000",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -24,7 +24,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Maxi Motorhome",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:31.879Z",
+      "scrapedAt": "2026-10-19T20:53:36.895Z",
       "source": "canadream",
       "kms": "2000",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -38,7 +38,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:31.879Z",
+      "scrapedAt": "2026-10-19T20:53:36.895Z",
       "source": "canadream",
       "kms": "1500",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -52,7 +52,7 @@
       "price": "$19.00\n                                 per night for up to 10 nights*",
       "vehicleInfo": "Maxi Motorhome",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:31.879Z",
+      "scrapedAt": "2026-10-19T20:53:36.895Z",
       "source": "canadream",
       "kms": "1500",
       "extras": "Free One-Way-Fee and Linen Kits per passenger"
@@ -66,36 +66,10 @@
       "price": "$29.00\n                                 for up to 10 nights*",
       "vehicleInfo": "Saver 2Saver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:31.879Z",
+      "scrapedAt": "2026-10-19T20:53:36.895Z",
       "source": "canadream",
       "kms": "5000",
       "extras": "Free One-Way-Fee, Free 5000km"
-    },
-    {
-      "id": "4c7a851c",
-      "departure": "Halifax",
-      "destination": "Vancouver",
-      "startDate": "Now",
-      "endDate": "November 12, 2026",
-      "price": "$1/night (Up to 14 nights)",
-      "vehicleInfo": "Truck Camper ($1,500 fuel voucher)",
-      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:32.790Z",
-      "source": "fraserway",
-      "kms": "6,500 km"
-    },
-    {
-      "id": "f10aff6",
-      "departure": "Halifax",
-      "destination": "Calgary",
-      "startDate": "Now",
-      "endDate": "November 12, 2026",
-      "price": "$1/night (Up to 14 nights)",
-      "vehicleInfo": "Truck Camper ($1,500 fuel voucher)",
-      "url": "https://rent.fraserway.com/en/rv/rental-specials/relocation-specials/",
-      "scrapedAt": "2026-10-19T15:59:32.790Z",
-      "source": "fraserway",
-      "kms": "5,000 km"
     }
   ]
 }
