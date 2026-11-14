@@ -1,6 +1,20 @@
 {
-  "lastUpdated": "2026-11-13T18:16:41.645Z",
+  "lastUpdated": "2026-11-14T00:01:25.980Z",
   "offers": [
+    {
+      "id": "3926256",
+      "departure": "Halifax",
+      "destination": "Toronto",
+      "startDate": "13 November 2026\n                                1:00pm - 4:00pm",
+      "endDate": "07 December 2026\n                                10:00am",
+      "price": "$19.00\n                                 per night for up to 10 nights*",
+      "vehicleInfo": "Saver 2Saver 4",
+      "url": "https://www.canadream.com/special-offers/relocation-specials/",
+      "scrapedAt": "2026-11-14T00:00:52.719Z",
+      "source": "canadream",
+      "kms": "2000",
+      "extras": "Free One-Way-Fee and Linen Kits per passenger"
+    },
     {
       "id": "51489145",
       "departure": "Toronto / Montreal",
@@ -10,7 +24,7 @@
       "price": "$49.00\n                                 per night for up to 21 nights*",
       "vehicleInfo": "Maxi Motorhome",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-11-13T18:16:10.736Z",
+      "scrapedAt": "2026-11-14T00:00:52.719Z",
       "source": "canadream",
       "kms": "5000",
       "extras": "Free One Way Fee"
@@ -24,7 +38,7 @@
       "price": "$39.00\n                                 per night for up to 21 nights*",
       "vehicleInfo": "Super Van CamperSaver 4Saver 6",
       "url": "https://www.canadream.com/special-offers/relocation-specials/",
-      "scrapedAt": "2026-11-13T18:16:10.736Z",
+      "scrapedAt": "2026-11-14T00:00:52.719Z",
       "source": "canadream",
       "kms": "5000",
       "extras": "Free One Way Fee"
